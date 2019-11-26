@@ -12,9 +12,10 @@ namespace Demo.AspNetCore.PushNotifications.Services.Sqlite
         public static IServiceCollection AddSqlitePushSubscriptionStore(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<PushSubscriptionContext>(options =>
-                options.UseSqlite(configuration.GetConnectionString(SQLITE_CONNECTION_STRING_NAME))
+                options.UseSqlServer(configuration.GetConnectionString(SQLITE_CONNECTION_STRING_NAME))
             );
 
+            
             services.AddTransient<IPushSubscriptionStore, SqlitePushSubscriptionStore>();
             services.AddHttpContextAccessor();
             services.AddSingleton<IPushSubscriptionStoreAccessorProvider, SqlitePushSubscriptionStoreAccessorProvider>();

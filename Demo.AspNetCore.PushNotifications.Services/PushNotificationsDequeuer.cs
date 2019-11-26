@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using Lib.Net.Http.WebPush;
 using Demo.AspNetCore.PushNotifications.Services.Abstractions;
+using System;
 
 namespace Demo.AspNetCore.PushNotifications.Services
 {
@@ -35,6 +36,15 @@ namespace Demo.AspNetCore.PushNotifications.Services
 
             return Task.WhenAny(_dequeueMessagesTask, Task.Delay(Timeout.Infinite, cancellationToken));
         }
+
+        //protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+        //{
+        //    Console.WriteLine("Notification Service Started");
+        //    while (!stoppingToken.IsCancellationRequested)
+        //    {
+        //        await DequeueMessagesAsync();
+        //    }
+        //}
 
         private async Task DequeueMessagesAsync()
         {
